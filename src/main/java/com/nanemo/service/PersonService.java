@@ -29,7 +29,7 @@ public class PersonService {
         personRepository.addPeopleWithSimpleUpdateMethod();
     }
 
-    public void dropTable() {
-        personRepository.dropPersonTable();
+    public void dropAndCreatePersonTable() {
+        personRepository.dropAndCreatePersonTable();
     }
 }

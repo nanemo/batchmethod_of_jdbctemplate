@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<body>
+
+<form th:method="post" th:action="@{/person/with_wbatch_method}">
+    <input type="submit" value="Add people with batch method">
+</form>
+
+<form th:method="post" th:action="@{/person/with_simple_update_method}">
+    <input type="submit" value="Add people with simple update method">
+</form>
+
+<form th:method="delete" th:action="@{/person/delete}">
+    <input type="submit" value="Delete people">
+</form>
+
+<div>
+    <table>
+        <thead>
+        <th:block>ID</th:block>
+        <th:block>NAME</th:block>
+        <th:block>EMAIL</th:block>
+        <th:block>AGE</th:block>
+        <th:block>ADDRESS</th:block>
+        </thead>
+
+        <tbody>
+        <tr th:each="person : ${people}">
+            <td th:text="${person.getPersonId()}"/>
+            <td th:text="${person.getName()}"/>
+            <td th:text="${person.getEmail()}"/>
+            <td th:text="${person.getAge()}"/>
+            <td th:text="${person.getAddress()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

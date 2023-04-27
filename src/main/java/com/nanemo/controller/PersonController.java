@@ -22,14 +22,14 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping
+    @GetMapping()
     public String getAll(Model model) {
-        model.addAttribute("people" + personService.getAllPerson());
-        return "person/first_page";
+        model.addAttribute("people", personService.getAllPerson());
+        return "person_page/first_page";
     }
 
 
-    @PostMapping("/with_batch_method")
+    @PostMapping("/with_wbatch_method")
     public String addPeopleWithBatchMethod(Model model) {
         long afterAdding = currentTimeMillis();
         personService.addPeopleWithBatchMethod();
@@ -50,8 +50,8 @@ public class PersonController {
     }
 
     @DeleteMapping("/delete")
-    public String dropTable() {
-        personService.dropTable();
+    public String dropAndCreatePersonTable() {
+        personService.dropAndCreatePersonTable();
         return "redirect:/person";
     }
 

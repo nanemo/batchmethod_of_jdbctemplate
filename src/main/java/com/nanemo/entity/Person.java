@@ -1,7 +1,6 @@
 package com.nanemo.entity;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 public class Person {
@@ -11,10 +10,15 @@ public class Person {
     private Byte age;
     private String address;
 
+    public Person(){
+    }
+
     public Person(String name, String email, Byte age, String address) {
         this.name = name;
         this.email = email;
         this.age = age;
         this.address = address;
     }
+
+
 }
