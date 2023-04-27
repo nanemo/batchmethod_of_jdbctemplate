@@ -26,8 +26,9 @@ public class PersonRepository {
         return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
     }
 
-    public void createWithBatchMethod(Person person) {
+    public void addPeopleWithBatchMethod() {
         List<Person> people = getPeople();
+
         jdbcTemplate.batchUpdate("INSERT INTO Person (name, email, age, address) VALUES (?,?,?,?)",
                 new BatchPreparedStatementSetter() {
                     @Override
@@ -45,16 +46,14 @@ public class PersonRepository {
                 });
     }
 
-    public void createWithSimpleUpdateMethod() {
+    public void addPeopleWithSimpleUpdateMethod() {
         List<Person> people = getPeople();
-
-        dropPersonTable();
 
         people.forEach(person -> jdbcTemplate.update("INSERT INTO Person (name, email, age, address) VALUES (?,?,?,?)",
                 person.getName(), person.getEmail(), person.getAge(), person.getAddress()));
     }
 
-    private void dropPersonTable() {
+    public void dropPersonTable() {
         jdbcTemplate.update("DROP TABLE IF EXISTS Person; " + "CREATE TABLE Person(\n" +
                 "    person_id Integer AUTO_INCREMENT PRIMARY KEY,\n" +
                 "    name      VARCHAR(60),\n" +

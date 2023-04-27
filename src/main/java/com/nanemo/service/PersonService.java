@@ -5,7 +5,7 @@ import com.nanemo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.List;
 
 @Component
 public class PersonService {
@@ -17,8 +17,19 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
+    public List<Person> getAllPerson() {
+        return personRepository.getAllPerson();
+    }
 
-    public Optional<Person> getAllPerson() {
-        personRepository.getAllPerson();
+    public void addPeopleWithBatchMethod() {
+        personRepository.addPeopleWithBatchMethod();
+    }
+
+    public void addPeopleWithSimpleUpdateMethod() {
+        personRepository.addPeopleWithSimpleUpdateMethod();
+    }
+
+    public void dropTable() {
+        personRepository.dropPersonTable();
     }
 }
