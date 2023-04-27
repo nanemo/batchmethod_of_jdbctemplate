@@ -1,8 +1,11 @@
 package com.nanemo.service;
 
+import com.nanemo.entity.Person;
 import com.nanemo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 public class PersonService {
@@ -15,5 +18,7 @@ public class PersonService {
     }
 
 
-
+    public Optional<Person> getAll() {
+        return null;
+    }
 }
