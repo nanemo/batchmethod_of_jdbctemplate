@@ -18,7 +18,7 @@ public class PersonService {
     }
 
 
-    public Optional<Person> getAll() {
-        return null;
+    public Optional<Person> getAllPerson() {
+        personRepository.getAllPerson();
     }
 }

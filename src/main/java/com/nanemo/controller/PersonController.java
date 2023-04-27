@@ -20,7 +20,7 @@ public class PersonController {
 
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute("people" + personService.getAll());
+        model.addAttribute("people" + personService.getAllPerson());
         return "person/first_page";
     }
 
