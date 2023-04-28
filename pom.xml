@@ -86,7 +86,7 @@
     </dependencies>
 
     <build>
-        <finalName>batchMethodOfJdbcTemplate</finalName>
+        <finalName>root</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

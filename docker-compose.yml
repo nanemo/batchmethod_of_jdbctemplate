@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: container_psql
+    volumes:
+      - ./psql-dump:/docker-entrypoint-initdb.d
+    # переменные окружения
+    environment:
+      - POSTGRES_DB=data_psql
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=12345
+    ports:
+      - "6541:5432"
+
+  web:
+    build: .
+    container_name: container_psql_web
+    ports:
+      - "8080:8080"
+    # "зависит от",
+    links:
+      - db
