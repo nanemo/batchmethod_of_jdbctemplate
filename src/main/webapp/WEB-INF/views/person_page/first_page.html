@@ -3,40 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Person</title>
+    <link rel="stylesheet" href="first_page.css">
 </head>
 <body>
+<div style="margin: auto">
+    <form th:method="post" th:action="@{/person/with_wbatch_method}">
+        <input type="submit" value="Add people with batch method">
+    </form>
 
-<form th:method="post" th:action="@{/person/with_wbatch_method}">
-    <input type="submit" value="Add people with batch method">
-</form>
+    <form th:method="post" th:action="@{/person/with_simple_update_method}">
+        <input type="submit" value="Add people with simple update method">
+    </form>
 
-<form th:method="post" th:action="@{/person/with_simple_update_method}">
-    <input type="submit" value="Add people with simple update method">
-</form>
+    <form th:method="delete" th:action="@{/person/delete}">
+        <input type="submit" value="Delete people">
+    </form>
+</div>
 
-<form th:method="delete" th:action="@{/person/delete}">
-    <input type="submit" value="Delete people">
-</form>
+<div style="border: 1px solid black; width: 50%; margin: auto">
+    <p style="border: 1px solid black; background-color: coral; width: 30%; margin: auto">Execution time:
+        <b th:text="${time}"/>
+    </p>
+    <table style="border: 1px solid black; width: 100%">
 
-<div>
-    <table>
-        <thead>
-        <th:block>ID</th:block>
-        <th:block>NAME</th:block>
-        <th:block>EMAIL</th:block>
-        <th:block>AGE</th:block>
-        <th:block>ADDRESS</th:block>
-        </thead>
-
-        <tbody>
-        <tr th:each="person : ${people}">
-            <td th:text="${person.getPersonId()}"/>
-            <td th:text="${person.getName()}"/>
-            <td th:text="${person.getEmail()}"/>
-            <td th:text="${person.getAge()}"/>
-            <td th:text="${person.getAddress()}"/>
+        <tr>
+            <th style="border: 1px solid black; width: 5%">ID</th>
+            <th style="border: 1px solid black; width: 20%">Name</th>
+            <th style="border: 1px solid black; width: 30%">Email</th>
+            <th style="border: 1px solid black; width: 10%">Age</th>
+            <th style="border: 1px solid black; width: 40%">Address</th>
         </tr>
-        </tbody>
+
+        <tr th:each="person : ${people}">
+            <td style="border: 1px solid black; width: 10%" th:text="${person.getPersonId()}"/>
+            <td style="border: 1px solid black; width: 20%" th:text="${person.getName()}"/>
+            <td style="border: 1px solid black; width: 30%" th:text="${person.getEmail()}"/>
+            <td style="border: 1px solid black; width: 10%" th:text="${person.getAge()}"/>
+            <td style="border: 1px solid black; width: 30%" th:text="${person.getAddress()}"/>
+        </tr>
     </table>
 </div>
 </body>

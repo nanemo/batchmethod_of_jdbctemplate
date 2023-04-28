@@ -14,6 +14,7 @@ import static java.lang.System.currentTimeMillis;
 @Controller
 @RequestMapping("/person")
 public class PersonController {
+    private long time;
 
     private final PersonService personService;
 
@@ -25,6 +26,7 @@ public class PersonController {
     @GetMapping()
     public String getAll(Model model) {
         model.addAttribute("people", personService.getAllPerson());
+        model.addAttribute("time", time);
         return "person_page/first_page";
     }
 
@@ -34,8 +36,8 @@ public class PersonController {
         long afterAdding = currentTimeMillis();
         personService.addPeopleWithBatchMethod();
         long beforeAdding = currentTimeMillis();
+        time = beforeAdding - afterAdding;
 
-        model.addAttribute("time_difference", beforeAdding - afterAdding);
         return "redirect:/person";
     }
 
@@ -44,8 +46,8 @@ public class PersonController {
         long afterAdding = currentTimeMillis();
         personService.addPeopleWithSimpleUpdateMethod();
         long beforeAdding = currentTimeMillis();
+        time = beforeAdding - afterAdding;
 
-        model.addAttribute("time_difference", beforeAdding - afterAdding);
         return "redirect:/person";
     }
 
