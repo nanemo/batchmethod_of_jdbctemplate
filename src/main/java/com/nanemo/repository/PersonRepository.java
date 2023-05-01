@@ -1,25 +1,27 @@
 package com.nanemo.repository;
 
 import com.nanemo.entity.Person;
+import com.nanemo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class PersonRepository {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final PersonService personService;
 
     @Autowired
-    public PersonRepository(JdbcTemplate jdbcTemplate) {
+    public PersonRepository(JdbcTemplate jdbcTemplate, PersonService personService) {
         this.jdbcTemplate = jdbcTemplate;
+        this.personService = personService;
     }
 
     public List<Person> getAllPerson() {
@@ -27,7 +29,7 @@ public class PersonRepository {
     }
 
     public void addPeopleWithBatchMethod() {
-        List<Person> people = getPeople();
+        List<Person> people = personService.getPeople();
 
         jdbcTemplate.batchUpdate("INSERT INTO Person (name, email, age, address) VALUES (?,?,?,?)",
                 new BatchPreparedStatementSetter() {
@@ -47,7 +49,7 @@ public class PersonRepository {
     }
 
     public void addPeopleWithSimpleUpdateMethod() {
-        List<Person> people = getPeople();
+        List<Person> people = personService.getPeople();
 
         people.forEach(person -> jdbcTemplate.update("INSERT INTO Person (name, email, age, address) VALUES (?,?,?,?)",
                 person.getName(), person.getEmail(), person.getAge(), person.getAddress()));
@@ -61,16 +63,5 @@ public class PersonRepository {
                 "    age       SMALLINT," +
                 "    address   VARCHAR(100))");
     }
-
-    private List<Person> getPeople() {
-        List<Person> people = new ArrayList<>();
-
-        for (int i = 0; i < 1000; i++) {
-            people.add(new Person("name" + i, "test@email.com", (byte) 30, "Country, City, 00000"));
-        }
-
-        return people;
-    }
-
 
 }

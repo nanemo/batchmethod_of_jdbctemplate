@@ -1,4 +1,4 @@
-package com.nanemo.cofig;
+package com.nanemo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

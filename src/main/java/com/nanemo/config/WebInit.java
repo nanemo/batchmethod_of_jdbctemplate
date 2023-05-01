@@ -1,4 +1,4 @@
-package com.nanemo.cofig;
+package com.nanemo.config;
 
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
