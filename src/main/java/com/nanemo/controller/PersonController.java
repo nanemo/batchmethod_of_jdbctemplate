@@ -25,7 +25,7 @@ public class PersonController {
     @GetMapping()
     public String getAll(Model model) {
         model.addAttribute("people", personService.getAllPerson());
-        model.addAttribute("time", personService.getTime());
+        model.addAttribute("time", personService.getTime() + " milli second");
         return "person_page/first_page";
     }
 
@@ -52,7 +52,11 @@ public class PersonController {
 
     @DeleteMapping("/delete")
     public String dropAndCreatePersonTable() {
+        long afterAdding = currentTimeMillis();
         personService.dropAndCreatePersonTable();
+        long beforeAdding = currentTimeMillis();
+        personService.setTime(beforeAdding - afterAdding);
+
         return "redirect:/person";
     }
 

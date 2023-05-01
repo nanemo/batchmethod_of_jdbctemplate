@@ -3,12 +3,14 @@ package com.nanemo.service;
 import com.nanemo.entity.Person;
 import com.nanemo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Lazy
 public class PersonService {
     private long time;
 
@@ -24,11 +26,11 @@ public class PersonService {
     }
 
     public void addPeopleWithBatchMethod() {
-        personRepository.addPeopleWithBatchMethod();
+        personRepository.addPeopleWithBatchMethod(getPeople());
     }
 
     public void addPeopleWithSimpleUpdateMethod() {
-        personRepository.addPeopleWithSimpleUpdateMethod();
+        personRepository.addPeopleWithSimpleUpdateMethod(getPeople());
     }
 
     public void dropAndCreatePersonTable() {
@@ -47,7 +49,7 @@ public class PersonService {
         List<Person> people = new ArrayList<>();
 
         for (int i = 0; i < 1000; i++) {
-            people.add(new Person("name" + i, "test@email.com", (byte) 30, "Country, City, 00000"));
+            people.add(new Person("name" + (i + 1), "test@email.com", (byte) 30, "Country, City, 00000"));
         }
 
         return people;

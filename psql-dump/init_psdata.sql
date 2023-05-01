@@ -5,4 +5,4 @@ CREATE TABLE Person
     email     VARCHAR(60),
     age       SMALLINT,
     address   VARCHAR(100)
-)
+);
