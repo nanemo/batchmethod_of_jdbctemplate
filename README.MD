@@ -2,10 +2,11 @@
 These instructions will help you with how to deploy the project and how to use the project.
 
 ## In the project we used:
-- Spring JdbcTemplate.
-- Thymeleaf-Spring5.
-- PostgresSQL.
-- HTML page. 
+- JDK version 17
+- PostgresSQL 42.6.0
+- Spring Framework 5.3.20
+- Thymeleaf-Spring5
+- HTML page
 
 ## How do I execute the project?
 For deploying we should have the Docker. 
